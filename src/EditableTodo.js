@@ -43,7 +43,11 @@ function EditableTodo({ id, title, description, priority }) {
               Del
             </button>
           </div>
-          <Todo />
+          <Todo
+          id={id}
+          title={title}
+          description={description}
+          priority={priority} />
         </div>)
       }
     </div>
