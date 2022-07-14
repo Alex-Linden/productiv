@@ -5,7 +5,7 @@ import TodoForm from "./TodoForm";
 /** Show editable todo item.
  *
  * Props
- * - todo
+ * - todoData
  * - update(): fn to call to update a todo
  * - remove(): fn to call to remove a todo
  *
@@ -38,11 +38,10 @@ function EditableTodo({ todoData, update, remove }) {
       {editStatus
         ? (<TodoForm
           key={id}
-          id={id}
           title={title}
           description={description}
           priority={priority}
-          submitFunction={handleSave}/>)
+          submitFunction={handleSave} />)
         : (<div className="mb-3">
           <div className="float-end text-sm-end">
             <button
@@ -52,13 +51,12 @@ function EditableTodo({ todoData, update, remove }) {
             </button>
             <button
               className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-              onClick={()=>handleDelete(id)}>
+              onClick={() => handleDelete(id)}>
               Del
             </button>
           </div>
           <Todo
             key={id}
-            id={id}
             title={title}
             description={description}
             priority={priority} />

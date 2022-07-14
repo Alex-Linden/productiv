@@ -4,13 +4,15 @@ import React, { useState } from "react";
 /** Form for adding.
  *
  * Props:
- * - initialFormData
+ * - title
+ * - description
+ * - priority
  * - handleSave: function to call in parent.
  *
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-function TodoForm({ id = '', title = '', description = '', priority = 1, submitFunction }) {
+function TodoForm({ title = '', description = '', priority = 1, submitFunction }) {
   const initialState = { title, description, priority };
   const [formData, setFormData] = useState(initialState);
 

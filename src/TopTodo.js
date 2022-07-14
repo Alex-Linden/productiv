@@ -17,7 +17,6 @@ function TopTodo({ todos }) {
 
   return <Todo
     key={top.id}
-    id={top.id}
     title={top.title}
     description={top.description}
     priority={top.priority} />;

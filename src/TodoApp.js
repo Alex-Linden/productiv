@@ -8,7 +8,7 @@ import TodoForm from "./TodoForm";
 /** App for managing a todo list.
  *
  * Props:
- * - initialTodos: possible array of [ todo, ... ]
+ * - initialTodos: array of [ todo, ... ]
  *
  * State:
  * - todos: array of [ todo, ... ]
