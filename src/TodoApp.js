@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 
 import TopTodo from "./TopTodo";
 import EditableTodoList from "./EditableTodoList";
+import TodoForm from "./TodoForm";
 
 /** App for managing a todo list.
  *
@@ -20,7 +21,7 @@ function TodoApp({ initialTodos }) {
 
   /** add a new todo to list */
   function create(newTodo) {
-    const newTodoList = [...todos, newTodo];
+    const newTodoList = [...todos, {...newTodo, id: uuid()}];
     setTodos(newTodoList);
   }
 
@@ -59,7 +60,7 @@ function TodoApp({ initialTodos }) {
 
           <section>
             <h3 className="mb-3">Add Nü</h3>
-            FIXME
+            <TodoForm submitFunction={create} />
           </section>
         </div>
 
