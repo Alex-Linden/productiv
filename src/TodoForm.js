@@ -10,7 +10,7 @@ import React, { useState } from "react";
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-function TodoForm({id='', title='', description='', priority='', submitFunction}) {
+function TodoForm({ id = '', title = '', description = '', priority = 1, submitFunction }) {
   const initialState = { title, description, priority };
   const [formData, setFormData] = useState(initialState);
 

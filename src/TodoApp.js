@@ -21,7 +21,7 @@ function TodoApp({ initialTodos }) {
 
   /** add a new todo to list */
   function create(newTodo) {
-    const newTodoList = [...todos, {...newTodo, id: uuid()}];
+    const newTodoList = [...todos, { ...newTodo, id: uuid() }];
     setTodos(newTodoList);
   }
 
@@ -45,6 +45,7 @@ function TodoApp({ initialTodos }) {
         <div className="col-md-6">
           {todos.length > 0
             ? (<EditableTodoList
+              key={1}
               todos={todos}
               update={update}
               remove={remove} />)
@@ -52,15 +53,15 @@ function TodoApp({ initialTodos }) {
         </div>
 
         <div className="col-md-6">
-          (if no top todo, omit this whole section)
-          <section className="mb-4">
-            <h3>Top Todo</h3>
-            <TopTodo />
-          </section>
+          {todos.length > 0 &&
+            <section className="mb-4">
+              <h3>Top Todo</h3>
+              <TopTodo key={2} todos={todos} />
+            </section>}
 
           <section>
             <h3 className="mb-3">Add Nü</h3>
-            <TodoForm submitFunction={create} />
+            <TodoForm key={3} submitFunction={create} />
           </section>
         </div>
 

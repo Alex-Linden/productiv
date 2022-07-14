@@ -27,7 +27,7 @@ function EditableTodo({ todoData, update, remove }) {
   }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
-  function handleSave(formData) { 
+  function handleSave(formData) {
     update({ ...formData, id });
     setEditStatus(false);
   }
@@ -37,10 +37,11 @@ function EditableTodo({ todoData, update, remove }) {
 
       {editStatus
         ? (<TodoForm
+          key={id}
           id={id}
           title={title}
           description={description}
-          priority={priority} 
+          priority={priority}
           submitFunction={handleSave}/>)
         : (<div className="mb-3">
           <div className="float-end text-sm-end">
@@ -56,6 +57,7 @@ function EditableTodo({ todoData, update, remove }) {
             </button>
           </div>
           <Todo
+            key={id}
             id={id}
             title={title}
             description={description}
