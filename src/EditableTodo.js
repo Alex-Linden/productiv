@@ -12,24 +12,36 @@ import TodoForm from "./TodoForm";
  * EditableTodoList -> EditableTodo -> { Todo, TodoForm }
  */
 
-function EditableTodo({ id, title, description, priority }) {
+function EditableTodo({ todoData, update, remove }) {
   const [editStatus, setEditStatus] = useState(false);
+  const { id, title, description, priority } = todoData;
+
   /** Toggle if this is being edited */
   function toggleEdit() {
     setEditStatus(!editStatus);
   }
 
   /** Call remove fn passed to this. */
-  function handleDelete() { }
+  function handleDelete(id) {
+    remove(id);
+  }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
-  function handleSave(formData) { }
+  function handleSave(formData) { 
+    update({ ...formData, id });
+    setEditStatus(false);
+  }
 
   return (
     <div className="EditableTodo">
 
       {editStatus
-        ? (<TodoForm />)
+        ? (<TodoForm
+          id={id}
+          title={title}
+          description={description}
+          priority={priority} 
+          submitFunction={handleSave}/>)
         : (<div className="mb-3">
           <div className="float-end text-sm-end">
             <button
@@ -39,15 +51,15 @@ function EditableTodo({ id, title, description, priority }) {
             </button>
             <button
               className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-              onClick={handleDelete}>
+              onClick={()=>handleDelete(id)}>
               Del
             </button>
           </div>
           <Todo
-          id={id}
-          title={title}
-          description={description}
-          priority={priority} />
+            id={id}
+            title={title}
+            description={description}
+            priority={priority} />
         </div>)
       }
     </div>
