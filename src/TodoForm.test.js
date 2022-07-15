@@ -52,17 +52,17 @@ describe("TodoForm component", function () {
     expect(submitMock).toHaveBeenCalledTimes(1);
   });
 
-  // it("handle changes updates state", function () {
-  //   const { container } = render(<TodoForm
-  //     initialFormData={TEST_TODOS[0]}
+  // TODO: do we need to test all fields??
+  it("handle changes updates state", function () {
+    const { container } = render(<TodoForm
+      initialFormData={TEST_TODOS[0]}
+    />);
 
-  //   />);
+    // click go button
+    const input = container.querySelector("#newTodo-title");
+    fireEvent.change(input, { target: { value: "123" } });
 
-  //   // click go button
-  //   const input = container.querySelector("#newTodo-title");
-  //   fireEvent.change(input, { target: { value: "123" } });
-
-  //   // update function was called
-  //   expect(TodoForm.handleChange).toHaveBeenCalledTimes(1);
-  // }); FIXME: figure this out
+    // new value is on page
+    expect(input).toHaveValue("123");
+  }); 
 });
