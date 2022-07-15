@@ -1,20 +1,20 @@
 import React from "react";
-import {TEST_TODOS} from "./_testCommon";
-import Todo from "./Todo";
+import{TEST_TODOS} from "./_testCommon";
+import TopTodo from "./TopTodo";
 import { render } from "@testing-library/react";
 
-describe("Todo component", function () {
+describe("TopTodo component", function () {
   it("renders without crashing", function () {
-    render(<Todo todo={TEST_TODOS[0]} />);
+    render(<TopTodo todos={TEST_TODOS} />);
   });
 
   it("matches snapshot", function () {
-    const { container } = render(<Todo todo={TEST_TODOS[0]} />);
+    const { container } = render(<TopTodo todos={TEST_TODOS} />);
     expect(container).toMatchSnapshot();
   });
 
-  it("displays todo data", function () {
-    const { container } = render(<Todo todo={TEST_TODOS[0]} />);
+  it("displays Top todo data", function () {
+    const { container } = render(<TopTodo todos={TEST_TODOS} />);
 
     expect(container.querySelector(".Todo")).toBeInTheDocument();
     expect(container.querySelector(".Todo"))

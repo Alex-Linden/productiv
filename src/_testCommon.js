@@ -1,3 +1,4 @@
+const TODO_CLASS = ".Todo";
 
 const TEST_TODOS = [{
   id: 11,
@@ -18,4 +19,4 @@ const TEST_TODOS = [{
   priority: 3,
 }];
 
-export default TEST_TODOS;
+export { TEST_TODOS, TODO_CLASS };
