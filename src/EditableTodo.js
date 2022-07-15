@@ -13,14 +13,14 @@ import TodoForm from "./TodoForm";
  */
 
 function EditableTodo({ todoData, update, remove }) {
-  const [editStatus, setEditStatus] = useState(false);
+  const [editStatus, setEditStatus] = useState(false); //isediting
   const { id, title, description, priority } = todoData;
 
   /** Toggle if this is being edited */
   function toggleEdit() {
     setEditStatus(!editStatus);
   }
-
+  //FIXME: callback form
   /** Call remove fn passed to this. */
   function handleDelete(id) {
     remove(id);

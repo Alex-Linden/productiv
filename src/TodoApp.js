@@ -24,6 +24,7 @@ function TodoApp({ initialTodos }) {
     const newTodoList = [...todos, { ...newTodo, id: uuid() }];
     setTodos(newTodoList);
   }
+//FIXME: set state as callback
 
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
