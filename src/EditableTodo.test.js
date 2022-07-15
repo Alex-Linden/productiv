@@ -1,7 +1,8 @@
 import React from "react";
-import {TEST_TODOS, TODO_CLASS } from "./_testCommon";
 import EditableTodo from "./EditableTodo";
-import { render } from "@testing-library/react";
+import { TEST_TODOS, TODO_CLASS } from "./_testCommon";
+import { render, fireEvent } from "@testing-library/react";
+
 
 
 describe("EditableTodo component", function () {
@@ -14,7 +15,7 @@ describe("EditableTodo component", function () {
     expect(container).toMatchSnapshot();
   });
 
-  it("Displays Editable Todo", function() {
+  it("Displays Editable Todo", function () {
     const { container } = render(<EditableTodo todo={TEST_TODOS[0]} />);
 
     //displays todo data
@@ -25,10 +26,12 @@ describe("EditableTodo component", function () {
     //displays edit and delete buttons
     expect(container.querySelector(".EditableTodo-toggle")).toBeInTheDocument();
     expect(container.querySelector(".EditableTodo-delBtn")).toBeInTheDocument();
-    expect(container.querySelector(".NewTodoForm")).not.toBeInTheDocument();
-  })
 
-  it("Displays TodoForm when edit is clicked", function() {
+    //doesn't display TodoFrom
+    expect(container.querySelector(".TodoForm")).not.toBeInTheDocument();
+  });
+
+  it("Displays TodoForm when edit is clicked", function () {
     const { container } = render(<EditableTodo todo={TEST_TODOS[0]} />);
 
     //displays todo data
@@ -36,12 +39,40 @@ describe("EditableTodo component", function () {
     expect(container.querySelector(TODO_CLASS))
       .toContainHTML("<b>test1</b>");
 
+    // click edit button
+    const editButton = container.querySelector(".EditableTodo-toggle");
+    fireEvent.click(editButton);
+
+    //doesn't display edit and delete buttons
+    expect(container.querySelector(".EditableTodo-toggle")).not.toBeInTheDocument();
+    expect(container.querySelector(".EditableTodo-delBtn")).not.toBeInTheDocument();
+
+    //displays TodoForm component
+    expect(container.querySelector(".TodoForm")).toBeInTheDocument();
+
+    //displays todo data as values
+    expect(container.querySelector("#newTodo-description")).toHaveValue("test1");
+  });
+
+  it("deletes todo when delete is clicked", function () {
+    const removeMock = jest.fn();
+    removeMock.mockClear();
+
+    const { container } = render(<EditableTodo todo={TEST_TODOS[0]} remove={removeMock} />);
+
+    //displays todo data
+    expect(container.querySelector(TODO_CLASS)).toBeInTheDocument();
+    expect(container.querySelector(TODO_CLASS))
+      .toContainHTML("<b>test1</b>");
+
+    // click delete button
+    const deleteButton = container.querySelector(".EditableTodo-delBtn");
+    fireEvent.click(deleteButton);
+
+    // remove function was called
+    expect(removeMock).toHaveBeenCalledTimes(1);    
+  });
 
 
-    //displays edit and delete buttons
-    expect(container.querySelector(".EditableTodo-toggle")).toBeInTheDocument();
-    expect(container.querySelector(".EditableTodo-delBtn")).toBeInTheDocument();
-    expect(container.querySelector(".NewTodoForm")).not.toBeInTheDocument();
-  })
 });
 
