@@ -21,22 +21,18 @@ function TodoApp({ initialTodos }) {
 
   /** add a new todo to list */
   function create(newTodo) {
-    const newTodoList = [...todos, { ...newTodo, id: uuid() }];
-    setTodos(newTodoList);
+    setTodos(todos => [...todos, { ...newTodo, id: uuid() }]);
   }
-//FIXME: set state as callback
 
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
-    const newTodoList = todos.map(
-      todo => todo.id === updatedTodo.id ? updatedTodo : todo);
-    setTodos(newTodoList);
+    setTodos(todos => todos.map(
+      todo => todo.id === updatedTodo.id ? updatedTodo : todo));
   }
 
   /** delete a todo by id */
   function remove(id) {
-    const newTodoList = todos.filter(todo => todo.id !== id);
-    setTodos(newTodoList);
+    setTodos(todos => todos.filter(todo => todo.id !== id));
   }
 
   return (

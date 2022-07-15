@@ -13,29 +13,29 @@ import TodoForm from "./TodoForm";
  */
 
 function EditableTodo({ todoData, update, remove }) {
-  const [editStatus, setEditStatus] = useState(false); //isediting
+  const [isEditing, setIsEditing] = useState(false); 
   const { id, title, description, priority } = todoData;
 
   /** Toggle if this is being edited */
   function toggleEdit() {
-    setEditStatus(!editStatus);
+    setIsEditing(isEditing => !isEditing);
   }
-  //FIXME: callback form
+  
   /** Call remove fn passed to this. */
-  function handleDelete(id) {
+  function handleDelete() {
     remove(id);
   }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
   function handleSave(formData) {
     update({ ...formData, id });
-    setEditStatus(false);
+    setIsEditing(false);
   }
 
   return (
     <div className="EditableTodo">
 
-      {editStatus
+      {isEditing
         ? (<TodoForm
           key={id}
           title={title}
@@ -51,7 +51,7 @@ function EditableTodo({ todoData, update, remove }) {
             </button>
             <button
               className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-              onClick={() => handleDelete(id)}>
+              onClick={handleDelete}>
               Del
             </button>
           </div>
