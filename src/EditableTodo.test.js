@@ -54,6 +54,33 @@ describe("EditableTodo component", function () {
     expect(container.querySelector("#newTodo-description")).toHaveValue("test1");
   });
 
+  it("Calls handleSave when Todo is edited", function () {
+    const updateMock = jest.fn();
+    updateMock.mockClear();
+    const { container } = render(<EditableTodo
+      todo={TEST_TODOS[0]}
+      update={updateMock} />);
+
+    //displays todo data
+    expect(container.querySelector(TODO_CLASS)).toBeInTheDocument();
+    expect(container.querySelector(TODO_CLASS))
+      .toContainHTML("<b>test1</b>");
+
+    // click edit button
+    const editButton = container.querySelector(".EditableTodo-toggle");
+    fireEvent.click(editButton);
+
+    //displays TodoForm component
+    expect(container.querySelector(".TodoForm")).toBeInTheDocument();
+
+    // click edit button
+    const updateButton = container.querySelector(".TodoForm-addBtn");
+    fireEvent.click(updateButton);
+
+    // update function was called
+    expect(updateMock).toHaveBeenCalledTimes(1);
+  });
+
   it("deletes todo when delete is clicked", function () {
     const removeMock = jest.fn();
     removeMock.mockClear();
@@ -70,7 +97,7 @@ describe("EditableTodo component", function () {
     fireEvent.click(deleteButton);
 
     // remove function was called
-    expect(removeMock).toHaveBeenCalledTimes(1);    
+    expect(removeMock).toHaveBeenCalledTimes(1);
   });
 
 
