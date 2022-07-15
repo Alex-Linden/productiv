@@ -11,3 +11,12 @@ it("matches snapshot", function () {
   const { container } = render(<Todo todo={TEST_TODOS[0]} />);
   expect(container).toMatchSnapshot();
 });
+
+it("displays todo data", function () {
+  const { container } = render(<Todo todo={TEST_TODOS[0]} />);
+
+  expect(container.querySelector(".Todo")).toBeInTheDocument();
+  expect(container.querySelector(".Todo"))
+    .toContainHTML("<b>test1</b>");
+});
+
