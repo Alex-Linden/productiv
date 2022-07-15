@@ -3,8 +3,6 @@ import React from "react";
 import { TEST_TODOS } from "./_testCommon";
 import { render, fireEvent } from "@testing-library/react";
 
-TodoForm.handleChange = jest.fn();
-
 describe("TodoForm component", function () {
   it("renders without crashing", function () {
     render(<TodoForm />);
