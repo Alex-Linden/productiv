@@ -73,7 +73,7 @@ describe("EditableTodo component", function () {
     //displays TodoForm component
     expect(container.querySelector(".TodoForm")).toBeInTheDocument();
 
-    // click edit button
+    // click Go button
     const updateButton = container.querySelector(".TodoForm-addBtn");
     fireEvent.click(updateButton);
 
