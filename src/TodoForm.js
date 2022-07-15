@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 
+const defaultInitialFormData = { title: '', description: '', priority: 1 };
 
 /** Form for adding.
  *
  * Props:
- * - title
- * - description
- * - priority
+ * - initialFormData: { id, title, description, priority }
  * - handleSave: function to call in parent.
  *
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-function TodoForm({ title = '', description = '', priority = 1, submitFunction }) {
-  const initialState = { title, description, priority };
-  const [formData, setFormData] = useState(initialState);
+function TodoForm({ initialFormData=defaultInitialFormData, submitFunction }) {
+  const [formData, setFormData] = useState(initialFormData);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -29,7 +27,7 @@ function TodoForm({ title = '', description = '', priority = 1, submitFunction }
   function handleSubmit(evt) {
     evt.preventDefault();
     submitFunction(formData);
-    setFormData(initialState);
+    setFormData(initialFormData);
   }
 
   return (

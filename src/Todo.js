@@ -3,16 +3,16 @@ import React from "react";
 /** Simple presentation component for a todo.
  *
  * Props:
- * - todo: { title, description, priority }
+ * - todo: { id, title, description, priority }
  *
  * { EditableTodo, TopTodo } -> Todo
  **/
 
-function Todo({ title, description, priority }) {
+function Todo({ todo }) {
   return (
     <div className="Todo">
-      <div><b>{title}</b> <small>(priority: {priority})</small></div>
-      <div><small>{description}</small></div>
+      <div><b>{todo.title}</b> <small>(priority: {todo.priority})</small></div>
+      <div><small>{todo.description}</small></div>
     </div>
   );
 }
